@@ -4,7 +4,8 @@
   "main": "script.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "echo 'No build step needed'"
   },
   "type": "module",
   "keywords": [],
