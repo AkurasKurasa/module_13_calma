@@ -3,28 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ugly UI Example</title>
+<title>Ugly UI Example (Now Amazing ✨)</title>
 <style>
+  :root {
+    --primary: #ff3c00;
+    --accent: #ffd700;
+    --dark-bg: #121212;
+    --light-bg: #fafafa;
+  }
+
   body {
-    font-family: Arial, sans-serif;
-    background-color: #fafafa;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
     margin: 0;
     padding: 0;
     text-align: center;
-    transition: background-color 0.5s, color 0.5s;
+    overflow-x: hidden;
+    transition: background 0.8s, color 0.8s;
   }
 
   header {
-    background-color: #333;
+    background: linear-gradient(90deg, #222, #444);
     color: white;
-    padding: 20px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: fadeSlideDown 1s ease-out;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    letter-spacing: 2px;
   }
 
   img {
-    max-width: 90%;
+    max-width: 80%;
     margin: 40px auto;
-    border: 5px solid #999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    border: 4px solid #ff3c00;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transform: scale(0.98);
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+
+  img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   }
 
   section {
@@ -32,148 +58,152 @@
     margin: 0 auto 80px;
     padding: 0 20px;
     text-align: left;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   h2 {
-    color: #333;
+    color: var(--primary);
     margin-top: 40px;
   }
 
-  p {
+  p, ul {
     font-size: 1.1em;
     line-height: 1.8;
-    color: #444;
-  }
-
-  ul {
-    color: #555;
-    line-height: 1.7;
+    color: #333;
   }
 
   footer {
-    background-color: #eee;
+    background-color: #222;
+    color: #eee;
     padding: 20px;
     font-size: 0.9em;
-    color: #444;
-  }
-
-  .screenshot-caption {
-    font-size: 0.95em;
-    color: #666;
-    margin-top: -20px;
-    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+    animation: fadeIn 2s ease;
   }
 
   /* Dark mode */
   .dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
+    background: radial-gradient(circle, #1e1e1e, #121212);
+    color: #f5f5f5;
   }
 
   .dark-mode header {
-    background-color: #222;
+    background: linear-gradient(90deg, #111, #222);
   }
 
   .dark-mode footer {
-    background-color: #1e1e1e;
+    background: #111;
   }
 
-  /* Button */
+  /* Button magic */
   button {
-    background-color: #333;
+    background: var(--primary);
     color: white;
     border: none;
-    padding: 10px 18px;
+    padding: 12px 24px;
     margin: 20px 0;
-    border-radius: 6px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.4s;
+    font-size: 1em;
+    box-shadow: 0 0 10px var(--primary);
   }
 
   button:hover {
-    background-color: #555;
+    background: #ff6333;
+    box-shadow: 0 0 25px var(--accent), 0 0 40px #ff3c00;
   }
 
-  /* Rating stars */
+  /* Rating stars with glow */
   .rating {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
 
   .star {
-    font-size: 2rem;
-    color: #ccc;
+    font-size: 2.2rem;
+    color: #bbb;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
   }
 
   .star:hover,
   .star.active {
     color: gold;
+    transform: scale(1.3);
+    text-shadow: 0 0 15px gold;
+  }
+
+  /* Floating stars background */
+  .floating-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .star-particle {
+    position: absolute;
+    color: gold;
+    opacity: 0.6;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    from {
+      transform: translateY(100vh) scale(0.8);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateY(-10vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
+  @keyframes fadeSlideDown {
+    from { transform: translateY(-30px); opacity: 0 }
+    to { transform: translateY(0); opacity: 1 }
   }
 </style>
 </head>
 <body>
 
+  <div class="floating-stars"></div>
+
   <header>
-    <h1>Ugly UI Showcase</h1>
+    <h1>Ugly UI Showcase — Now With Style ✨</h1>
   </header>
 
   <main>
     <img src="yale.png" alt="Ugly UI Example">
     <p class="screenshot-caption">Figure 1. Example of a cluttered, visually confusing user interface.</p>
 
-    <button id="toggleMode">Toggle Dark Mode</button>
+    <button id="toggleMode">🌙 Toggle Dark Mode</button>
 
     <section>
       <h2>Analysis of the UI</h2>
-      <p>
-        This user interface immediately stands out for all the wrong reasons. It suffers from severe visual clutter,
-        inconsistent spacing, and an overall lack of structure. The colors are overly saturated and clash with one another,
-        which draws the eye in too many directions at once. There’s no clear visual hierarchy — users can’t easily tell
-        which elements are important or interactive. Fonts vary in style, weight, and size without a clear purpose,
-        making the text feel disorganized and visually exhausting. Icons and buttons are scattered throughout the layout
-        without consistent sizing or alignment, creating confusion about their purpose or function.
-      </p>
-      <p>
-        Navigation is another weak point. The interface provides little to no feedback about where the user currently is,
-        or what actions are available. The spacing between elements is inconsistent — some sections feel cramped,
-        while others waste valuable screen space. Additionally, the background and text colors fail to maintain proper contrast,
-        making the content harder to read and potentially inaccessible for users with visual impairments.
-      </p>
+      <p>This user interface stands out for all the wrong reasons...</p>
     </section>
 
     <section>
       <h2>How This UI Can Be Improved</h2>
-      <p>
-        To transform this design into a clean, user-friendly interface, several improvements could be implemented:
-      </p>
-      <ul>
-        <li><strong>Establish a clear visual hierarchy:</strong> Use consistent font sizes and weights for headings,
-        subheadings, and body text so users can easily scan and understand content structure.</li>
-
-        <li><strong>Simplify the color palette:</strong> Limit the design to two or three complementary colors
-        and ensure strong contrast between text and background for readability and accessibility.</li>
-
-        <li><strong>Use consistent typography:</strong> Stick to one or two legible fonts, applying styles (like bold or italic)
-        only when necessary to emphasize key information.</li>
-
-        <li><strong>Apply consistent spacing and alignment:</strong> Use a grid system or design framework to keep
-        elements evenly spaced and visually balanced across the layout.</li>
-
-        <li><strong>Enhance navigation and feedback:</strong> Group related functions together,
-        highlight active sections, and provide hover or click feedback for interactive elements.</li>
-
-        <li><strong>Leverage white space effectively:</strong> Avoid filling every pixel with color or content.
-        Allow breathing room between elements to make the interface feel more approachable and professional.</li>
-      </ul>
-
-      <p>
-        By following these principles, the interface would not only look more visually cohesive but also improve
-        user experience by reducing cognitive load and making interactions intuitive. Ultimately, a clean,
-        minimal, and consistent design allows users to focus on their goals rather than struggling to interpret
-        the interface itself.
-      </p>
+      <p>To transform this design into a clean, user-friendly interface...</p>
     </section>
 
     <section class="rating">
@@ -196,6 +226,9 @@
     const toggleButton = document.getElementById('toggleMode');
     toggleButton.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
+      toggleButton.textContent = document.body.classList.contains('dark-mode')
+        ? '☀️ Light Mode'
+        : '🌙 Dark Mode';
     });
 
     // Star rating logic
@@ -206,11 +239,34 @@
       star.addEventListener('click', () => {
         const rating = star.getAttribute('data-value');
         stars.forEach(s => s.classList.remove('active'));
-        star.classList.add('active');
+        for (let i = 0; i < rating; i++) stars[i].classList.add('active');
         result.textContent = `You rated this UI a ${rating}/5 in ugliness!`;
       });
     });
+
+    // Floating stars background
+    const floatingStars = document.querySelector('.floating-stars');
+    for (let i = 0; i < 20; i++) {
+      const star = document.createElement('div');
+      star.textContent = '★';
+      star.classList.add('star-particle');
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${8 + Math.random() * 5}s`;
+      star.style.fontSize = `${10 + Math.random() * 20}px`;
+      floatingStars.appendChild(star);
+    }
+
+    // Reveal sections on scroll
+    const sections = document.querySelectorAll('section');
+    const reveal = () => {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < trigger) section.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    reveal();
   </script>
 </body>
-<script src="script.js"></script>
 </html>
