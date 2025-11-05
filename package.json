@@ -1,0 +1,17 @@
+{
+  "name": "module_13_calma",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "jest": "^30.2.0"
+  }
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ugly UI Example</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    transition: background-color 0.5s, color 0.5s;
+  }
+
+  header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+  }
+
+  img {
+    max-width: 90%;
+    margin: 40px auto;
+    border: 5px solid #999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  section {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    text-align: left;
+  }
+
+  h2 {
+    color: #333;
+    margin-top: 40px;
+  }
+
+  p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #444;
+  }
+
+  ul {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  footer {
+    background-color: #eee;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #444;
+  }
+
+  .screenshot-caption {
+    font-size: 0.95em;
+    color: #666;
+    margin-top: -20px;
+    margin-bottom: 40px;
+  }
+
+  /* Dark mode */
+  .dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  .dark-mode header {
+    background-color: #222;
+  }
+
+  .dark-mode footer {
+    background-color: #1e1e1e;
+  }
+
+  /* Button */
+  button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin: 20px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #555;
+  }
+
+  /* Rating stars */
+  .rating {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .star:hover,
+  .star.active {
+    color: gold;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Ugly UI Showcase</h1>
+  </header>
+
+  <main>
+    <img src="yale.png" alt="Ugly UI Example">
+    <p class="screenshot-caption">Figure 1. Example of a cluttered, visually confusing user interface.</p>
+
+    <button id="toggleMode">Toggle Dark Mode</button>
+
+    <section>
+      <h2>Analysis of the UI</h2>
+      <p>
+        This user interface immediately stands out for all the wrong reasons. It suffers from severe visual clutter,
+        inconsistent spacing, and an overall lack of structure. The colors are overly saturated and clash with one another,
+        which draws the eye in too many directions at once. There’s no clear visual hierarchy — users can’t easily tell
+        which elements are important or interactive. Fonts vary in style, weight, and size without a clear purpose,
+        making the text feel disorganized and visually exhausting. Icons and buttons are scattered throughout the layout
+        without consistent sizing or alignment, creating confusion about their purpose or function.
+      </p>
+      <p>
+        Navigation is another weak point. The interface provides little to no feedback about where the user currently is,
+        or what actions are available. The spacing between elements is inconsistent — some sections feel cramped,
+        while others waste valuable screen space. Additionally, the background and text colors fail to maintain proper contrast,
+        making the content harder to read and potentially inaccessible for users with visual impairments.
+      </p>
+    </section>
+
+    <section>
+      <h2>How This UI Can Be Improved</h2>
+      <p>
+        To transform this design into a clean, user-friendly interface, several improvements could be implemented:
+      </p>
+      <ul>
+        <li><strong>Establish a clear visual hierarchy:</strong> Use consistent font sizes and weights for headings,
+        subheadings, and body text so users can easily scan and understand content structure.</li>
+
+        <li><strong>Simplify the color palette:</strong> Limit the design to two or three complementary colors
+        and ensure strong contrast between text and background for readability and accessibility.</li>
+
+        <li><strong>Use consistent typography:</strong> Stick to one or two legible fonts, applying styles (like bold or italic)
+        only when necessary to emphasize key information.</li>
+
+        <li><strong>Apply consistent spacing and alignment:</strong> Use a grid system or design framework to keep
+        elements evenly spaced and visually balanced across the layout.</li>
+
+        <li><strong>Enhance navigation and feedback:</strong> Group related functions together,
+        highlight active sections, and provide hover or click feedback for interactive elements.</li>
+
+        <li><strong>Leverage white space effectively:</strong> Avoid filling every pixel with color or content.
+        Allow breathing room between elements to make the interface feel more approachable and professional.</li>
+      </ul>
+
+      <p>
+        By following these principles, the interface would not only look more visually cohesive but also improve
+        user experience by reducing cognitive load and making interactions intuitive. Ultimately, a clean,
+        minimal, and consistent design allows users to focus on their goals rather than struggling to interpret
+        the interface itself.
+      </p>
+    </section>
+
+    <section class="rating">
+      <h2>Rate How Ugly This UI Is 😬</h2>
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+      <p id="ratingResult"></p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 UI Improvement Project | Designed for educational purposes
+  </footer>
+
+  <script>
+    // Toggle dark mode
+    const toggleButton = document.getElementById('toggleMode');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Star rating logic
+    const stars = document.querySelectorAll('.star');
+    const result = document.getElementById('ratingResult');
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = star.getAttribute('data-value');
+        stars.forEach(s => s.classList.remove('active'));
+        star.classList.add('active');
+        result.textContent = `You rated this UI a ${rating}/5 in ugliness!`;
+      });
+    });
+  </script>
+</body>
+<script src="script.js"></script>
+</html>
