@@ -1,9 +1,10 @@
-const { addNumbers } = require('../script.js');
+// __test__/script.test.js
+const { addNumbers } = require('../script');
 
 test('adds numbers correctly', () => {
-  expect(addNumbers(2, 3)).toBe(5); // ✅ passing test
+  expect(addNumbers(2, 3)).toBe(5); // ✅ passes
 });
 
 test('fails intentionally', () => {
-  expect(addNumbers(2, 2)).toBe(5); // ❌ failing test (for demo)
+  expect(addNumbers(2, 2)).toBe(5); // ❌ fails on purpose
 });
