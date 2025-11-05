@@ -24,6 +24,12 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
+
+      # ✅ Add jsdom environment install step here
+      - name: Install jsdom environment
+        run: npm install --save-dev jest-environment-jsdom
+
+      # ✅ Run tests (uses jsdom)
       - run: npm test
 
   deploy:
