@@ -13,7 +13,6 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: chmod +x ./node_modules/.bin/eslint
       - run: npx eslint .
 
   test:
