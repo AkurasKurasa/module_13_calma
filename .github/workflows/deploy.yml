@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+
       - run: npm ci
       - run: npx eslint .
 
@@ -20,16 +22,16 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+
       - run: npm ci
 
-      # ✅ Add jsdom environment install step here
-      - name: Install jsdom environment
-        run: npm install --save-dev jest-environment-jsdom
+      # Install JSDOM environment for Jest 28+
+      - run: npm install --save-dev jest-environment-jsdom
 
-      # ✅ Run tests (uses jsdom)
       - run: npm test
 
   deploy:
@@ -38,8 +40,23 @@ jobs:
     if: ${{ success() }}
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./dist
+          exclude_assets: |
+            **/node_modules/**
+            **/tests/**
+            **/__test__/**
+            **/.github/**
